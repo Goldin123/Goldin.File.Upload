@@ -5,6 +5,18 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Api", "Goldin.File.Upload.Api\Goldin.File.Upload.Api.csproj", "{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Database", "Goldin.File.Upload.Database\Goldin.File.Upload.Database.csproj", "{285F24EA-68A6-41EB-A34E-6B6A795F9B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Model", "Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj", "{346E07F0-0949-48C4-9DBB-E019CCE82562}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Common", "Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj", "{E979D66B-5425-4B14-94BC-D4566AA3E440}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Manager", "Goldin.File.Upload.Manager\Goldin.File.Upload.Manager.csproj", "{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Security", "Goldin.File.Upload.Security\Goldin.File.Upload.Security.csproj", "{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Website", "Goldin.File.Upload.Website\Goldin.File.Upload.Website.csproj", "{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +27,30 @@ Global
 		{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{285F24EA-68A6-41EB-A34E-6B6A795F9B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{285F24EA-68A6-41EB-A34E-6B6A795F9B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{285F24EA-68A6-41EB-A34E-6B6A795F9B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{285F24EA-68A6-41EB-A34E-6B6A795F9B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346E07F0-0949-48C4-9DBB-E019CCE82562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346E07F0-0949-48C4-9DBB-E019CCE82562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346E07F0-0949-48C4-9DBB-E019CCE82562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346E07F0-0949-48C4-9DBB-E019CCE82562}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E979D66B-5425-4B14-94BC-D4566AA3E440}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E979D66B-5425-4B14-94BC-D4566AA3E440}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E979D66B-5425-4B14-94BC-D4566AA3E440}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E979D66B-5425-4B14-94BC-D4566AA3E440}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
