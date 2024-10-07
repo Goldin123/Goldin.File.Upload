@@ -48,12 +48,12 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation
             }
             catch (Exception ex) 
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(GetAllDataFilesAsync), ex.Message));
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(GetAllDataFilesAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }
 
-        public async Task<Tuple<bool, string>> ValidateAndProcessCsvAsync(IFormFile file) 
+        public async Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file) 
         {
             try 
             {
@@ -62,7 +62,7 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation
             }
             catch (Exception ex) 
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(ValidateAndProcessCsvAsync), ex.Message));
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(ValidateAndProcessCsvAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }

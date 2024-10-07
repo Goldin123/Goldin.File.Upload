@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Api", "Goldin.File.Upload.Api\Goldin.File.Upload.Api.csproj", "{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Api", "Goldin.File.Upload.Api\Goldin.File.Upload.Api.csproj", "{AE6B4EBF-5E47-4F2C-8FA4-9802B45756AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Database", "Goldin.File.Upload.Database\Goldin.File.Upload.Database.csproj", "{285F24EA-68A6-41EB-A34E-6B6A795F9B76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Database", "Goldin.File.Upload.Database\Goldin.File.Upload.Database.csproj", "{285F24EA-68A6-41EB-A34E-6B6A795F9B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Model", "Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj", "{346E07F0-0949-48C4-9DBB-E019CCE82562}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Model", "Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj", "{346E07F0-0949-48C4-9DBB-E019CCE82562}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Common", "Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj", "{E979D66B-5425-4B14-94BC-D4566AA3E440}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Common", "Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj", "{E979D66B-5425-4B14-94BC-D4566AA3E440}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Manager", "Goldin.File.Upload.Manager\Goldin.File.Upload.Manager.csproj", "{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Manager", "Goldin.File.Upload.Manager\Goldin.File.Upload.Manager.csproj", "{2F6D52EF-FF2D-4907-A457-8EC88EA8DC0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Security", "Goldin.File.Upload.Security\Goldin.File.Upload.Security.csproj", "{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Security", "Goldin.File.Upload.Security\Goldin.File.Upload.Security.csproj", "{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Website", "Goldin.File.Upload.Website\Goldin.File.Upload.Website.csproj", "{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Website", "Goldin.File.Upload.Website\Goldin.File.Upload.Website.csproj", "{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.FileHandler", "Goldin.File.Upload.FileHandler\Goldin.File.Upload.FileHandler.csproj", "{528BFF37-D90C-4FE3-B596-C40EF281CC4F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.FileHandler", "Goldin.File.Upload.FileHandler\Goldin.File.Upload.FileHandler.csproj", "{528BFF37-D90C-4FE3-B596-C40EF281CC4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Tests", "Goldin.File.Upload.Tests\Goldin.File.Upload.Tests.csproj", "{B05E3017-3D47-4A2C-AF17-FBE25A288663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B05E3017-3D47-4A2C-AF17-FBE25A288663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B05E3017-3D47-4A2C-AF17-FBE25A288663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B05E3017-3D47-4A2C-AF17-FBE25A288663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B05E3017-3D47-4A2C-AF17-FBE25A288663}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

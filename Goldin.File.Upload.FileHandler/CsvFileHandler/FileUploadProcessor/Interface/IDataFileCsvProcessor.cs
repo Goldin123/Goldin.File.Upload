@@ -17,6 +17,6 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Inte
         /// </summary>
         /// <param name="file"></param>
         /// <returns>A tuple containing with a bool successful or not with associated message. </returns>
-        Task<Tuple<bool, string>> ValidateAndProcessCsvAsync(IFormFile file);
+        Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file);
     }
 }

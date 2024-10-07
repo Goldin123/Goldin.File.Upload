@@ -51,12 +51,12 @@ namespace Goldin.File.Upload.Database.Repository
             }
             catch (SqlException ex)
             {
-                _logger.LogInformation(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(GetAllDataFilesAsync), ex.Message));
+                _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(GetAllDataFilesAsync), ex.Message));
                 throw new Exception(Notification.GeneralSqlExceptionMessage);
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(GetAllDataFilesAsync), ex.Message));
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(GetAllDataFilesAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }
@@ -92,12 +92,12 @@ namespace Goldin.File.Upload.Database.Repository
             }
             catch (SqlException ex)
             {
-                _logger.LogInformation(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(AddDataFileRecordAsync), ex.Message));
+                _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(AddDataFileRecordAsync), ex.Message));
                 throw new Exception(Notification.GeneralSqlExceptionMessage);
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(AddDataFileRecordAsync), ex.Message));
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(AddDataFileRecordAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }
@@ -129,12 +129,12 @@ namespace Goldin.File.Upload.Database.Repository
             }
             catch (SqlException ex)
             {
-                _logger.LogInformation(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(BulkSaveCsvDataAsync), ex.Message));
+                _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(BulkSaveCsvDataAsync), ex.Message));
                 throw new Exception(Notification.GeneralSqlExceptionMessage);
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(BulkSaveCsvDataAsync), ex.Message));
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(BulkSaveCsvDataAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }

@@ -23,6 +23,6 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
-        Task<Tuple<bool, string>> ValidateAndProcessCsvAsync(IFormFile file);
+        Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file);
     }
 }

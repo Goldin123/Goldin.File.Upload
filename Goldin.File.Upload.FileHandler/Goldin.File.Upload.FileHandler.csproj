@@ -12,11 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CsvFileHandler\FileValidatonRules\Implementation\" />
-    <Folder Include="CsvFileHandler\FileValidatonRules\Interface\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj" />
     <ProjectReference Include="..\Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj" />
   </ItemGroup>
