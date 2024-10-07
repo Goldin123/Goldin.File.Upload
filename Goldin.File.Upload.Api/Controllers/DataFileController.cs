@@ -9,12 +9,16 @@ namespace Goldin.File.Upload.Api.Controllers
     public class DataFileController : ControllerBase
     {
         private readonly IDataFileManager _dataFileManager;
-        public DataFileController(IDataFileManager dataFileManager) 
+        public DataFileController(IDataFileManager dataFileManager)
         {
             _dataFileManager = dataFileManager;
         }
         [HttpGet]
-        [Route("GetAllDataFiles")]
+        [Route("get-all-data-files")]
         public async Task<IActionResult> GetAllDataFiles() => Ok(await _dataFileManager.GetAllDataFilesAsync());
+
+        [HttpPost]
+        [Route("upload-data-file")]
+        public async Task<IActionResult> UploadCsvFile(IFormFile file) => Ok(await _dataFileManager.ValidateAndProcessCsvAsync(file));
     }
 }

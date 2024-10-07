@@ -18,6 +18,12 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
             _logger = logger;
         }
 
+        /// <summary>
+        /// This implements the reading of the csv file into a string.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>A string of the file content.</returns>
+        /// <exception cref="Exception"></exception>
         public async Task<string> ReadFileAsync(IFormFile file)
         {
             try

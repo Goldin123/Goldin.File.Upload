@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CsvFileHandler\CustomException\" />
-    <Folder Include="CsvFileHandler\FileValidator\" />
+    <Folder Include="CsvFileHandler\FileValidatonRules\Implementation\" />
+    <Folder Include="CsvFileHandler\FileValidatonRules\Interface\" />
   </ItemGroup>
 
   <ItemGroup>

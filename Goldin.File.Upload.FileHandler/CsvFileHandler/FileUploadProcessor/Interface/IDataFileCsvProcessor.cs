@@ -12,6 +12,11 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Inte
     /// </summary>
     public interface IDataFileCsvProcessor
     {
+        /// <summary>
+        /// This is responsible to validate and process a file that is being uploaded. 
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns>A tuple containing with a bool successful or not with associated message. </returns>
         Task<Tuple<bool, string>> ValidateAndProcessCsvAsync(IFormFile file);
     }
 }

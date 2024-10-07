@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,5 +17,12 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface
         /// </summary>
         /// <returns>A list of data files.</returns>
         Task<IEnumerable<Goldin.File.Upload.Model.DataFile>> GetAllDataFilesAsync();
+
+        /// <summary>
+        /// This manages the validations conducted to a file and the processing there after.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        Task<Tuple<bool, string>> ValidateAndProcessCsvAsync(IFormFile file);
     }
 }
