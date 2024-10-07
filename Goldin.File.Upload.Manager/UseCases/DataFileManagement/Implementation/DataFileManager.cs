@@ -53,6 +53,12 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation
             }
         }
 
+        /// <summary>
+        /// This implements the logic to validate and process and uploaded file.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file) 
         {
             try 

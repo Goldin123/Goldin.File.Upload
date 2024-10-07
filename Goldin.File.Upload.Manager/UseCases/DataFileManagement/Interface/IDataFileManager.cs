@@ -22,7 +22,7 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface
         /// This manages the validations conducted to a file and the processing there after.
         /// </summary>
         /// <param name="file"></param>
-        /// <returns></returns>
+        /// <returns>A tuple with validated fields and related messages associated to the file.</returns>
         Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file);
     }
 }
