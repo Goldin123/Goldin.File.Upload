@@ -1,3 +1,9 @@
+using Goldin.File.Upload.Database.Helper;
+using Goldin.File.Upload.Database.Interface;
+using Goldin.File.Upload.Database.Repository;
+using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation;
+using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,13 +13,30 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var configuration = builder.Services.BuildServiceProvider().GetService<IConfiguration>();
+
+// Get the connection string from the configuration
+var connectionString = configuration.GetConnectionString("DatabaseConnection");
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
+builder.Services.AddSingleton<IDatabaseConnection>(new DatabaseConnection(connectionString));
+builder.Services.AddSingleton<IDataFile, DataFileRepository>();
+builder.Services.AddSingleton<IDataFileManager, DataFileManager>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(opts =>
+    {
+        opts.EnableTryItOutByDefault();
+        opts.DocumentTitle = "Zetes API App";
+        opts.DisplayRequestDuration();
+    });
 }
 
 app.UseHttpsRedirection();

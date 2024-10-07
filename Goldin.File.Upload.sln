@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Security
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Website", "Goldin.File.Upload.Website\Goldin.File.Upload.Website.csproj", "{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.FileHandler", "Goldin.File.Upload.FileHandler\Goldin.File.Upload.FileHandler.csproj", "{528BFF37-D90C-4FE3-B596-C40EF281CC4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

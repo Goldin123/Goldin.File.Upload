@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Goldin.File.Upload.Database\Goldin.File.Upload.Database.csproj" />
+    <ProjectReference Include="..\Goldin.File.Upload.Manager\Goldin.File.Upload.Manager.csproj" />
+    <ProjectReference Include="..\Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj" />
   </ItemGroup>
 
 </Project>
