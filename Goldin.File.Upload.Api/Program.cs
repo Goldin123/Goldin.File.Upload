@@ -1,6 +1,8 @@
 using Goldin.File.Upload.Database.Helper;
 using Goldin.File.Upload.Database.Interface;
 using Goldin.File.Upload.Database.Repository;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Implementation;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Interface;
 using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation;
 using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface;
 
@@ -22,8 +24,10 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
 builder.Services.AddSingleton<IDatabaseConnection>(new DatabaseConnection(connectionString));
-builder.Services.AddSingleton<IDataFile, DataFileRepository>();
-builder.Services.AddSingleton<IDataFileManager, DataFileManager>();
+builder.Services.AddScoped<IDataFile, DataFileRepository>();
+builder.Services.AddScoped<IDataFileManager, DataFileManager>();
+builder.Services.AddScoped<IDataFileCsvProcessor, DataFileCsvProcessor>();
+builder.Services.AddScoped<IDataFileCsvUploader, DataFileCsvUploader>();
 
 var app = builder.Build();
 

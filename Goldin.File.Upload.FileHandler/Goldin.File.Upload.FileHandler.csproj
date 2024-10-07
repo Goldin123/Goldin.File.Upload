@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="CsvFileHandler\CustomException\" />
-    <Folder Include="CsvFileHandler\FileValidator\" />
+    <ProjectReference Include="..\Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj" />
+    <ProjectReference Include="..\Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj" />
   </ItemGroup>
 
 </Project>

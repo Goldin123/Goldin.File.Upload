@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.35" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Goldin.File.Upload.Common\Goldin.File.Upload.Common.csproj" />
     <ProjectReference Include="..\Goldin.File.Upload.Database\Goldin.File.Upload.Database.csproj" />
+    <ProjectReference Include="..\Goldin.File.Upload.FileHandler\Goldin.File.Upload.FileHandler.csproj" />
     <ProjectReference Include="..\Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj" />
   </ItemGroup>
 
