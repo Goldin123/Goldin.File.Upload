@@ -63,8 +63,22 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation
         {
             try 
             {
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - attempting to validate and process the file.", LogMessage.GeneralLogMessage, nameof(DataFileManager), nameof(GetAllDataFilesAsync)));
-                return await _dataFileCsvProcessor.ValidateAndProcessCsvAsync(file);
+                _logger.LogInformation(string.Format("{0} - {1} - {2} - attempting to validate the file.", LogMessage.GeneralLogMessage, nameof(DataFileManager), nameof(GetAllDataFilesAsync)));
+                var validateFile = await _dataFileCsvProcessor.ValidateCsvFileAsync(file);
+                if (validateFile != null)
+                {
+                    if (validateFile.Item1) // File is valid and can be sent to the database 
+                    {
+                        _logger.LogInformation(string.Format("{0} - {1} - {2} - attempting to process the file.", LogMessage.GeneralLogMessage, nameof(DataFileManager), nameof(GetAllDataFilesAsync)));
+                        if (validateFile.Item3 != null)
+                            return await _dataFile.BulkSaveCsvDataAsync(string.Format("{0}-{1}", file.FileName, DateTime.Now.Ticks), validateFile.Item3);
+                        else
+                            return validateFile;
+                    }
+                    else
+                        return validateFile;
+                }
+                return new Tuple<bool, string, string[]?>(false, Notification.GeneralExceptionMessage, null);
             }
             catch (Exception ex) 
             {

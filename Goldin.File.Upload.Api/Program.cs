@@ -3,6 +3,8 @@ using Goldin.File.Upload.Database.Interface;
 using Goldin.File.Upload.Database.Repository;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Implementation;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Interface;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Implementation;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Interface;
 using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation;
 using Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface;
 
@@ -28,6 +30,7 @@ builder.Services.AddScoped<IDataFile, DataFileRepository>();
 builder.Services.AddScoped<IDataFileManager, DataFileManager>();
 builder.Services.AddScoped<IDataFileCsvProcessor, DataFileCsvProcessor>();
 builder.Services.AddScoped<IDataFileCsvUploader, DataFileCsvUploader>();
+builder.Services.AddScoped<IDataFileCsvValidationRules, DataFileCsvValidationRules>();
 
 var app = builder.Build();
 

@@ -108,7 +108,7 @@ namespace Goldin.File.Upload.Database.Repository
         /// <param name="fileName"></param>
         /// <param name="lines"></param>
         /// <returns></returns>
-        public async Task<bool> BulkSaveCsvDataAsync(string fileName, string[] lines)
+        public async Task<Tuple<bool, string, string[]?>> BulkSaveCsvDataAsync(string fileName, string[] lines)
         {
             try
             {
@@ -116,15 +116,15 @@ namespace Goldin.File.Upload.Database.Repository
                 DataTable dataTable = CreateLinesDataTable(lines);
 
                 if (dataTable == null) 
-                    return false;
+                    return new Tuple<bool, string, string[]?>(false,"No data table",null);
                 
                 using (var connection = _databaseConnection.CreateConnection())
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@FileName", fileName, DbType.String);
                     parameters.Add("@DataFileRows", dataTable.AsTableValuedParameter("dbo.DataFileType"));
-                    await connection.ExecuteAsync("dbo.SaveDataFile", parameters, commandType: CommandType.StoredProcedure);
-                    return true;
+                    await connection.ExecuteAsync("dbo.sp_SaveDataFile", parameters, commandType: CommandType.StoredProcedure);
+                    return new Tuple<bool, string, string[]?>(true, string.Format("Successfully bulk uploaded records using unique filename: {0}", fileName), lines);
                 }
             }
             catch (SqlException ex)
@@ -156,7 +156,7 @@ namespace Goldin.File.Upload.Database.Repository
             // Populate the DataTable with rows from the CSV file.
             foreach (var line in lines.Skip(1)) // Skip the header.
             {
-                var fields = line.Split('\t'); // Assuming a tab-delimited file.
+                var fields = line.Replace("\",\"", ";").Split(';'); 
                 var row = dataTable.NewRow();
                 row["Name"] = fields[0];
                 row["Type"] = fields[1];

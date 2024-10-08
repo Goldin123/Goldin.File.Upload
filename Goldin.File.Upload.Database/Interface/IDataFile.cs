@@ -37,6 +37,6 @@ namespace Goldin.File.Upload.Database.Interface
         /// <param name="fileName"></param>
         /// <param name="lines"></param>
         /// <returns>Successful or Not</returns>
-        Task<bool> BulkSaveCsvDataAsync(string fileName, string[] lines);
+        Task<Tuple<bool, string, string[]?>> BulkSaveCsvDataAsync(string fileName, string[] lines);
     }
 }
