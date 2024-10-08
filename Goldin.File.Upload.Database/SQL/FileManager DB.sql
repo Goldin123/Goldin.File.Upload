@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [FileManager]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  Database [FileManager]    Script Date: 2024/10/08 13:43:04 ******/
 CREATE DATABASE [FileManager]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -84,7 +84,7 @@ ALTER DATABASE [FileManager] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEAN
 GO
 USE [FileManager]
 GO
-/****** Object:  UserDefinedTableType [dbo].[DataFileType]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  UserDefinedTableType [dbo].[DataFileType]    Script Date: 2024/10/08 13:43:04 ******/
 CREATE TYPE [dbo].[DataFileType] AS TABLE(
 	[Name] [varchar](100) NULL,
 	[Type] [varchar](100) NULL,
@@ -93,7 +93,7 @@ CREATE TYPE [dbo].[DataFileType] AS TABLE(
 	[Visible] [bit] NULL
 )
 GO
-/****** Object:  Table [dbo].[DataFile]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  Table [dbo].[DataFile]    Script Date: 2024/10/08 13:43:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -115,7 +115,7 @@ PRIMARY KEY CLUSTERED
 GO
 ALTER TABLE [dbo].[DataFile] ADD  DEFAULT (getdate()) FOR [UploadedAt]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_AddDataFileRecord]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  StoredProcedure [dbo].[sp_AddDataFileRecord]    Script Date: 2024/10/08 13:43:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +170,7 @@ BEGIN
 END;
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_GetAllDataFiles]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  StoredProcedure [dbo].[sp_GetAllDataFiles]    Script Date: 2024/10/08 13:43:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -196,13 +196,13 @@ BEGIN
     END CATCH
 END;
 GO
-/****** Object:  StoredProcedure [dbo].[sp_GetDataFileByFilename]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  StoredProcedure [dbo].[sp_GetDataFileByFilename]    Script Date: 2024/10/08 13:43:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE PROCEDURE [dbo].[sp_GetDataFileByFilename]
-    @FileName NVARCHAR(255)
+    @FileName VARCHAR(255)
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -217,7 +217,7 @@ BEGIN
             libraryFilter,
             visible
         FROM 
-            DataFiles
+            [FileManager].[dbo].[DataFile] WITH (NOLOCK)
         WHERE 
             fileName = @FileName;
     END TRY
@@ -238,7 +238,7 @@ BEGIN
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[sp_SaveDataFile]    Script Date: 2024/10/08 12:15:57 ******/
+/****** Object:  StoredProcedure [dbo].[sp_SaveDataFile]    Script Date: 2024/10/08 13:43:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
