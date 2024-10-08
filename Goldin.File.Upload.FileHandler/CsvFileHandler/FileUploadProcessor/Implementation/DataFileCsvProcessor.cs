@@ -1,6 +1,7 @@
 ﻿using Goldin.File.Upload.Common;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.CustomException;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Interface;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Implementation;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Interface;
 using Goldin.File.Upload.Model;
 using Microsoft.AspNetCore.Http;
@@ -35,25 +36,27 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
         /// </summary>
         /// <param name="file"></param>
         /// <returns>A string of the file.</returns>
-        public async Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file)
+        public async Task<Tuple<bool, string, string[]?>> ValidateCsvFileAsync(IFormFile file)
         {
             try
             {
                 //Read the file.
                 string content = await _dataFileCsvUploader.ReadFileAsync(file);
 
+                _logger.LogInformation(string.Format("{0} - {1} - {2} - file content: \n {3}.",LogMessage.GeneralLogMessage,nameof(DataFileCsvProcessor),nameof(ValidateCsvFileAsync) ,content));
+
                 if (content == null)
                 {
-                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}."), LogMessage.GeneralExceptionLogMessage,
-                                     nameof(DataFileCsvProcessor), nameof(ValidateAndProcessCsvAsync), FileValidationMessages.FileEmpty));
+                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
+                                     nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.FileEmpty)));
                     throw new DataFileCsvCustomException(FileValidationMessages.FileEmpty);
                 }
 
                 // Check if content is a text string and delimited by CR or CRLF
                 if (!_dataFileCsvValidationRules.IsValidCsvContent(content))
                 {
-                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}."), LogMessage.GeneralExceptionLogMessage,
-                              nameof(DataFileCsvProcessor), nameof(ValidateAndProcessCsvAsync), FileValidationMessages.FileValidatorCsvFormat));
+                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
+                              nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.FileValidatorCsvFormat)));
                     throw new DataFileCsvCustomException(FileValidationMessages.FileValidatorCsvFormat);
                 }
 
@@ -61,31 +64,37 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
 
                 if (!lines.Any())
                 {
-                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}."), LogMessage.GeneralExceptionLogMessage,
-                                nameof(DataFileCsvProcessor), nameof(ValidateAndProcessCsvAsync), FileValidationMessages.FileEmpty));
+                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
+                                nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.FileEmpty)));
                     throw new DataFileCsvCustomException(FileValidationMessages.FileEmpty);
                 }
 
                 // Check if the header row exists and is valid
-                string[] headers = lines[0].Split(',');
+                string[] headers = lines[0].Replace("\",\"", ";").Split(';');
+
                 if (!_dataFileCsvValidationRules.IsValidHeader(headers))
                 {
-                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}."), LogMessage.GeneralExceptionLogMessage,
-                               nameof(DataFileCsvProcessor), nameof(ValidateAndProcessCsvAsync), FileValidationMessages.InvalidHeader));
+                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
+                               nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.InvalidHeader)));
                     throw new DataFileCsvCustomException(1, FileValidationMessages.InvalidHeader);
                 }
 
-                // Validate each row (line) in the CSV
+                // Validate each data row (line) excluding the header in the CSV
                 for (int i = 1; i < lines.Length; i++)
                 {
-                    var values = lines[i].Split(',');
+                    var values = lines[i].Replace("\",\"", ";").Split(';');
 
-                    if (values.Length < 5)
+                    // Check if the line contains more than 5 properties
+                    if (values.Length < 5) 
                     {
-                        _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - Only contains {3} properties - should be at least 5."), LogMessage.GeneralExceptionLogMessage,
-                               nameof(DataFileCsvProcessor), nameof(ValidateAndProcessCsvAsync), values.Length));
-                        throw new DataFileCsvCustomException(i + 1, string.Format("Only contains {0} properties - should be at least 5.", values.Length));
+                        _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - Only contains {3} properties - should be at least 5.", LogMessage.GeneralExceptionLogMessage,
+                               nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), values.Length)));
+                        throw new DataFileCsvCustomException(i, string.Format("Only contains {0} properties - should be at least 5.", values.Length));
                     }
+                    else
+                        _logger.LogInformation(string.Format("{0} - {1} - {2} - data row line {3} length is greater then 5 properties.", LogMessage.GeneralLogMessage, nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), i));
+
+
 
                     // Map CSV line to DataFileRow model
                     DataFileRow dataFileRow = new DataFileRow
@@ -108,8 +117,13 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
                         throw new DataFileCsvCustomException(errorMessage);
                     }
 
-                    // Additional complex validation rules
-                    ValidateCustomRules(dataFileRow, i + 1);
+                    // number is searchable validation rules
+
+                    if (_dataFileCsvValidationRules.IsNumberSearchable(dataFileRow)) 
+                    {
+                        throw new DataFileCsvCustomException(i , "Search", "Number fields cannot be searchable.");
+                    }
+                    
                 }
 
                 return new Tuple<bool, string, string[]?>(true, string.Empty, lines); // Return success
@@ -123,15 +137,6 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
             {
                 _logger.LogError(ex, "Unexpected error while processing CSV");
                 return new Tuple<bool, string, string[]?>(false, "An unexpected error occurred while processing the CSV file.", null);
-            }
-        }
-
-        private void ValidateCustomRules(DataFileRow dataFileRow, int rowNumber)
-        {
-            // Custom rule validation for field types
-            if (dataFileRow.Type == "Number" && dataFileRow.Search == "Yes")
-            {
-                throw new DataFileCsvCustomException(rowNumber, "Search", "Number fields cannot be searchable.");
             }
         }
     }

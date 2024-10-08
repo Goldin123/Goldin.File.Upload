@@ -1,5 +1,7 @@
 ﻿using Goldin.File.Upload.Common;
+using Goldin.File.Upload.FileHandler.CsvFileHandler.CustomException;
 using Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Interface;
+using Goldin.File.Upload.Model;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -34,9 +36,15 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Impl
                     return false;
                 
                 string lineDelimiterPattern = @"(\r\n|\r|\n)";
-                _logger.LogInformation(string.Format("{0} - {1} - {2} - checking {3} using regex {4}", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidCsvContent), content, lineDelimiterPattern));
-                return Regex.IsMatch(content, lineDelimiterPattern);
+                _logger.LogInformation($"{DateTime.Now} - Verify CR or CRL using Regex: " + lineDelimiterPattern);
+                var isValid = Regex.IsMatch(content, lineDelimiterPattern);
 
+                if (isValid) 
+                    _logger.LogInformation(string.Format("{0} - {1} - {2} - content is valid.",LogMessage.GeneralLogMessage,nameof(DataFileCsvValidationRules),nameof(IsValidCsvContent)));
+                else
+                    _logger.LogWarning(string.Format("{0} - {1} - {2} - content is not valid.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidCsvContent)));
+
+                return isValid;
             }
             catch (Exception ex)
             {
@@ -59,16 +67,57 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Impl
                     return false;
 
                 _logger.LogInformation(string.Format("{0} - {1} - {2} - validating headers.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidHeader)));
-                return headers.Length >= 5 &&
+                var isValid =  headers.Length >= 5 &&
                        headers.Contains("Name") &&
                        headers.Contains("Type") &&
                        headers.Contains("Search") &&
                        headers.Contains("Library Filter") &&
                        headers.Contains("Visible");
+
+                if (isValid)
+                    _logger.LogInformation(string.Format("{0} - {1} - {2} - headers are valid.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidHeader)));
+                else
+                    _logger.LogWarning(string.Format("{0} - {1} - {2} - headers are not valid.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidHeader)));
+
+
+                return isValid;
             }
             catch (Exception ex)
             {
                 _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileCsvValidationRules), nameof(IsValidHeader), ex.Message));
+                throw new Exception(Notification.GeneralExceptionMessage);
+            }
+        }
+
+        /// <summary>
+        /// This implements the rule for numbers not to be searchable.
+        /// </summary>
+        /// <param name="dataFileRow"></param>
+        /// <param name="rowNumber"></param>
+        /// <exception cref="DataFileCsvCustomException"></exception>
+        public bool IsNumberSearchable(DataFileRow dataFileRow)
+        {
+            try
+            {
+                if (dataFileRow.Type == "Number" && dataFileRow.Search == "Yes")
+                {
+                    _logger.LogError(string.Format("{0} - {1} - {2} - number is searchable.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsNumberSearchable)));
+                    return true;
+                }
+                else if (dataFileRow.Type == "Number" && dataFileRow.Search == "No")
+                {
+                    _logger.LogWarning(string.Format("{0} - {1} - {2} - number field found but is not searchable.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsNumberSearchable)));
+                    return false;
+                }
+                else
+                {
+                    _logger.LogInformation(string.Format("{0} - {1} - {2} - no number field found.", LogMessage.GeneralLogMessage, nameof(DataFileCsvValidationRules), nameof(IsNumberSearchable)));
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileCsvValidationRules), nameof(IsNumberSearchable), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Goldin.File.Upload.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,15 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileValidationRules.Inte
         /// Check if the headers are 5 and have all needed fields.
         /// </summary>
         /// <param name="headers"></param>
-        /// <returns></returns>
+        /// <returns>Successful or not.</returns>
         bool IsValidHeader(string[] headers);
+
+        /// <summary>
+        /// Check if the number field is searchable.
+        /// </summary>
+        /// <param name="dataFileRow"></param>
+        /// <returns>Successful or not.</returns>
+        bool IsNumberSearchable(DataFileRow dataFileRow);
 
 
     }

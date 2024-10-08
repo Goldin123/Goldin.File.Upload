@@ -11,9 +11,9 @@ namespace Goldin.File.Upload.Database.Repository
 {
     public static class DapperExtensions
     {
-        public static SqlMapper.ICustomQueryParameter AsTableValuedParameter(this DataTable dataTable, string typeName)
-        {
-            return dataTable.AsTableValuedParameter(typeName);
-        }
+        //public static SqlMapper.ICustomQueryParameter AsTableValuedParameter(this DataTable dataTable, string typeName)
+        //{
+        //    return dataTable.AsTableValuedParameter(typeName);
+        //}
     }
 }
