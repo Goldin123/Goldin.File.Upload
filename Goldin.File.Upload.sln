@@ -15,11 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Manager"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Security", "Goldin.File.Upload.Security\Goldin.File.Upload.Security.csproj", "{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Website", "Goldin.File.Upload.Website\Goldin.File.Upload.Website.csproj", "{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.FileHandler", "Goldin.File.Upload.FileHandler\Goldin.File.Upload.FileHandler.csproj", "{528BFF37-D90C-4FE3-B596-C40EF281CC4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Goldin.File.Upload.Tests", "Goldin.File.Upload.Tests\Goldin.File.Upload.Tests.csproj", "{B05E3017-3D47-4A2C-AF17-FBE25A288663}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Goldin.File.Upload.Tests", "Goldin.File.Upload.Tests\Goldin.File.Upload.Tests.csproj", "{B05E3017-3D47-4A2C-AF17-FBE25A288663}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +49,6 @@ Global
 		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC818ED-6AAE-4526-BB3C-622979ECD4B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78207AEA-EE6F-4AF7-89D8-46F788D82D2C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{528BFF37-D90C-4FE3-B596-C40EF281CC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
