@@ -8,13 +8,7 @@ using System.Text;
 
 namespace Goldin.File.Upload.Api.Authorization
 {
-    public interface IJwtUtils
-    {
-        public string GenerateJwtToken(User user);
-        public int? ValidateJwtToken(string? token);
-    }
-
-    public class JwtUtils : IJwtUtils
+        public class JwtUtils : IJwtUtils
     {
         private readonly AppSettings _appSettings;
 
