@@ -21,4 +21,8 @@
     <ProjectReference Include="..\Goldin.File.Upload.Model\Goldin.File.Upload.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
+
 </Project>

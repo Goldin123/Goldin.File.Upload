@@ -38,5 +38,12 @@ namespace Goldin.File.Upload.Database.Interface
         /// <param name="lines"></param>
         /// <returns>Successful or Not</returns>
         Task<Tuple<bool, string, string[]?>> BulkSaveCsvDataAsync(string fileName, string[] lines);
+
+        /// <summary>
+        /// This is used to get specific file information by using the file name.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Goldin.File.Upload.Model.DataFile>> GetDataFileByFilenameAsync(string filename);
     }
 }

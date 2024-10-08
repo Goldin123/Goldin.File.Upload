@@ -15,10 +15,14 @@ namespace Goldin.File.Upload.Api.Controllers
         }
         [HttpGet]
         [Route("get-all-data-files")]
-        public async Task<IActionResult> GetAllDataFiles() => Ok(await _dataFileManager.GetAllDataFilesAsync());
+        public async Task<IActionResult> GetAllDataFilesAsync() => Ok(await _dataFileManager.GetAllDataFilesAsync());
 
         [HttpPost]
         [Route("upload-data-file")]
-        public async Task<IActionResult> UploadCsvFile(IFormFile file) => Ok(await _dataFileManager.ValidateAndProcessCsvAsync(file));
+        public async Task<IActionResult> UploadCsvFileAsync(IFormFile file) => Ok(await _dataFileManager.ValidateAndProcessCsvAsync(file));
+
+        [HttpGet]
+        [Route("get-file-by-name")]
+        public async Task<IActionResult> GetFileByNameAsync(string filename) => Ok(await _dataFileManager.GetDataFileByFilenameAsync(filename));
     }
 }
