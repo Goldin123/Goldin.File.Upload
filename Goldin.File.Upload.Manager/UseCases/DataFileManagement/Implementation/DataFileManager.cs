@@ -85,6 +85,22 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Implementation
                 _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(ValidateAndProcessCsvAsync), ex.Message));
                 throw new Exception(Notification.GeneralExceptionMessage);
             }
+            
+        }
+
+        public async Task<IEnumerable<Goldin.File.Upload.Model.DataFile>> GetDataFileByFilenameAsync(string filename)
+        {
+            try
+            {
+                _logger.LogInformation(string.Format("{0} - {1} - {2} - attempting to file's information.", LogMessage.GeneralLogMessage, nameof(DataFileManager), nameof(GetDataFileByFilenameAsync)));
+                return await _dataFile.GetDataFileByFilenameAsync(filename);
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileManager), nameof(GetDataFileByFilenameAsync), ex.Message));
+                throw new Exception(Notification.GeneralExceptionMessage);
+            }
         }
 
     }

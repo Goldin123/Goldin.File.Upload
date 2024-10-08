@@ -24,5 +24,12 @@ namespace Goldin.File.Upload.Manager.UseCases.DataFileManagement.Interface
         /// <param name="file"></param>
         /// <returns>A tuple with validated fields and related messages associated to the file.</returns>
         Task<Tuple<bool, string, string[]?>> ValidateAndProcessCsvAsync(IFormFile file);
+
+        /// <summary>
+        /// This manages the way file information is retrieved by using a filename.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Goldin.File.Upload.Model.DataFile>> GetDataFileByFilenameAsync(string filename);
     }
 }

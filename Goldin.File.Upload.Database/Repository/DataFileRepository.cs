@@ -70,7 +70,7 @@ namespace Goldin.File.Upload.Database.Repository
         /// <param name="search"></param>
         /// <param name="libraryFilter"></param>
         /// <param name="visible"></param>
-        /// <returns></returns>
+        /// <returns>Successful or not.</returns>
         /// <exception cref="Exception"></exception>
         public async Task<bool> AddDataFileRecordAsync(string fileName, string name, string type, bool search, bool libraryFilter, bool visible)
         {
@@ -107,7 +107,7 @@ namespace Goldin.File.Upload.Database.Repository
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="lines"></param>
-        /// <returns></returns>
+        /// <returns>A tuple with successful, message and lines. </returns>
         public async Task<Tuple<bool, string, string[]?>> BulkSaveCsvDataAsync(string fileName, string[] lines)
         {
             try
@@ -115,9 +115,9 @@ namespace Goldin.File.Upload.Database.Repository
                 // Prepare the DataTable for bulk insert
                 DataTable dataTable = CreateLinesDataTable(lines);
 
-                if (dataTable == null) 
-                    return new Tuple<bool, string, string[]?>(false,"No data table",null);
-                
+                if (dataTable == null)
+                    return new Tuple<bool, string, string[]?>(false, "No data table", null);
+
                 using (var connection = _databaseConnection.CreateConnection())
                 {
                     var parameters = new DynamicParameters();
@@ -143,9 +143,9 @@ namespace Goldin.File.Upload.Database.Repository
         /// This is a private method used to create a data table given a list of lines. 
         /// </summary>
         /// <param name="lines"></param>
-        /// <returns></returns>
+        /// <returns>A data table.</returns>
         private static DataTable CreateLinesDataTable(string[] lines)
-        {            
+        {
             var dataTable = new DataTable();
             dataTable.Columns.Add("Name", typeof(string));
             dataTable.Columns.Add("Type", typeof(string));
@@ -156,7 +156,7 @@ namespace Goldin.File.Upload.Database.Repository
             // Populate the DataTable with rows from the CSV file.
             foreach (var line in lines.Skip(1)) // Skip the header.
             {
-                var fields = line.Replace("\",\"", ";").Split(';'); 
+                var fields = line.Replace("\",\"", ";").Split(';');
                 var row = dataTable.NewRow();
                 row["Name"] = fields[0];
                 row["Type"] = fields[1];
@@ -166,6 +166,35 @@ namespace Goldin.File.Upload.Database.Repository
                 dataTable.Rows.Add(row);
             }
             return dataTable;
+        }
+
+        /// <summary>
+        /// This implements the logic to retrieve records based on a filename. 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns>A collections of data files in the database based on a filename.</returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<IEnumerable<Goldin.File.Upload.Model.DataFile>> GetDataFileByFilenameAsync(string filename)
+        {
+            try
+            {
+                using (var connection = _databaseConnection.CreateConnection())
+                {
+                    var dataFiles = await connection.QueryAsync<Goldin.File.Upload.Model.DataFile>("sp_GetDataFileByFilename",new { FileName = filename }, commandType: CommandType.StoredProcedure);
+                    _logger.LogInformation(string.Format("{0} - {1} - {2}", LogMessage.GeneralLogMessage, nameof(DataFileRepository), nameof(GetDataFileByFilenameAsync)));
+                    return dataFiles;
+                }
+            }
+            catch (SqlException ex)
+            {
+                _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}"), LogMessage.SqlLogMessage, nameof(DataFileRepository), nameof(GetDataFileByFilenameAsync), ex.Message));
+                throw new Exception(Notification.GeneralSqlExceptionMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(string.Format("{0} - {1} - {2} - {3}", LogMessage.GeneralExceptionLogMessage, nameof(DataFileRepository), nameof(GetDataFileByFilenameAsync), ex.Message));
+                throw new Exception(Notification.GeneralExceptionMessage);
+            }
         }
     }
 }

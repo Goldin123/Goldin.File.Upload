@@ -1,0 +1,7 @@
+Name;Type;Search;Library Filter
+Matter Number;Number;No;No
+Matter Name;Text;Yes;Yes
+Matter Description;Text;Yes;Yes
+Client Name;Text;Yes;Yes
+Approval Date;Date;No;No
+Logo;Image;No;No
