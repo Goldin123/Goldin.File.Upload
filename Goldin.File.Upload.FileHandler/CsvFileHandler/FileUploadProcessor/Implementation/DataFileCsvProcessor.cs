@@ -76,7 +76,7 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
                 {
                     _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
                                nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.InvalidHeader)));
-                    throw new DataFileCsvCustomException(1, FileValidationMessages.InvalidHeader);
+                    throw new DataFileCsvCustomException(0, FileValidationMessages.InvalidHeader);
                 }
 
                 // Validate each data row (line) excluding the header in the CSV
@@ -113,7 +113,7 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
 
                     if (!isValid)
                     {
-                        var errorMessage = string.Join("; ", validationResults.Select(r => $"Line {i + 1}: {r.ErrorMessage}"));
+                        var errorMessage = string.Join("; ", validationResults.Select(r => $"Line {i}: {r.ErrorMessage}"));
                         throw new DataFileCsvCustomException(errorMessage);
                     }
 
