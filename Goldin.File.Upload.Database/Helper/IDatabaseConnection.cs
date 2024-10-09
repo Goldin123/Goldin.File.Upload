@@ -14,5 +14,7 @@ namespace Goldin.File.Upload.Database.Helper
         /// </summary>
         /// <returns></returns>
         IDbConnection CreateConnection();
+        Task<IDbConnection> CreateConnectionAsync();
+
     }
 }

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Goldin.File.Upload.Database.Helper
 {
-    public class DatabaseConnection: IDatabaseConnection
+    public class DatabaseConnection : IDatabaseConnection
     {
         private readonly string _connectionString;
+
         /// <summary>
         /// Dependency injects the connection string.
         /// </summary>
@@ -27,6 +28,17 @@ namespace Goldin.File.Upload.Database.Helper
         public IDbConnection CreateConnection()
         {
             return new SqlConnection(_connectionString);
+        }
+
+        /// <summary>
+        /// Asynchronously creates the MS SQL connection.
+        /// </summary>
+        /// <returns>A Task representing the asynchronous operation, with the created connection.</returns>
+        public async Task<IDbConnection> CreateConnectionAsync()
+        {
+            var connection = new SqlConnection(_connectionString);
+            await connection.OpenAsync();
+            return connection;
         }
     }
 }
