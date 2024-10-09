@@ -42,7 +42,7 @@ namespace Goldin.File.Upload.Database.Repository
         {
             try
             {
-                using (var connection = _databaseConnection.CreateConnection())
+                using (var connection = await _databaseConnection.CreateConnectionAsync())
                 {
                     var dataFiles = await connection.QueryAsync<Goldin.File.Upload.Model.DataFile>("sp_GetAllDataFiles", commandType: CommandType.StoredProcedure);
                     _logger.LogInformation(string.Format("{0} - {1} - {2}", LogMessage.GeneralLogMessage, nameof(DataFileRepository), nameof(GetAllDataFilesAsync)));
@@ -76,7 +76,7 @@ namespace Goldin.File.Upload.Database.Repository
         {
             try
             {
-                using (var connection = _databaseConnection.CreateConnection())
+                using (var connection = await _databaseConnection.CreateConnectionAsync())
                 {
                     await connection.ExecuteAsync("sp_AddDataFileRecord", new
                     {
@@ -118,7 +118,7 @@ namespace Goldin.File.Upload.Database.Repository
                 if (dataTable == null)
                     return new Tuple<bool, string, string[]?>(false, "No data table", null);
 
-                using (var connection = _databaseConnection.CreateConnection())
+                using (var connection = await _databaseConnection.CreateConnectionAsync())
                 {
                     var parameters = new DynamicParameters();
                     parameters.Add("@FileName", fileName, DbType.String);
@@ -178,7 +178,7 @@ namespace Goldin.File.Upload.Database.Repository
         {
             try
             {
-                using (var connection = _databaseConnection.CreateConnection())
+                using (var connection = await _databaseConnection.CreateConnectionAsync())
                 {
                     var dataFiles = await connection.QueryAsync<Goldin.File.Upload.Model.DataFile>("sp_GetDataFileByFilename",new { FileName = filename }, commandType: CommandType.StoredProcedure);
                     _logger.LogInformation(string.Format("{0} - {1} - {2}", LogMessage.GeneralLogMessage, nameof(DataFileRepository), nameof(GetDataFileByFilenameAsync)));
