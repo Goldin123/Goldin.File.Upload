@@ -1,5 +1,6 @@
 ﻿using Goldin.File.Upload.Api.Models;
 using Goldin.File.Upload.Api.Services;
+using Goldin.File.Upload.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace Goldin.File.Upload.Api.Controllers
             var response = _userService.Authenticate(model);
 
             if (response == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+                return BadRequest(new { message = Notification.UserPasswordIncorrectMessage });
 
             return Ok(response);
         }
