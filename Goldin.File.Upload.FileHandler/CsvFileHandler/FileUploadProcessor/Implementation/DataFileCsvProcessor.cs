@@ -69,6 +69,13 @@ namespace Goldin.File.Upload.FileHandler.CsvFileHandler.FileUploadProcessor.Impl
                     throw new DataFileCsvCustomException(FileValidationMessages.FileEmpty);
                 }
 
+                if(lines.Length > 100) 
+                {
+                    _logger.LogError(string.Format(string.Format("{0} - {1} - {2} - {3}.", LogMessage.GeneralExceptionLogMessage,
+                                nameof(DataFileCsvProcessor), nameof(ValidateCsvFileAsync), FileValidationMessages.FileTooLarge)));
+                    throw new DataFileCsvCustomException(FileValidationMessages.FileTooLarge);
+                }
+
                 // Check if the header row exists and is valid
                 string[] headers = lines[0].Replace("\",\"", ";").Split(';');
 
