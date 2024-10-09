@@ -64,23 +64,16 @@ The application aims to used the above technologies and concepts.
 
 ![alt text](https://github.com/Goldin123/Goldin.File.Upload/blob/45a2bf215c66f7829fe3b95f3ad0ae80321608b5/Goldin.File.Upload.Common/Images/DataFileDatabaseEntities.jpg?raw=true)
 
-Name | Type | Constraints | Length
---- | --- | --- | ---
-Id | int | Primary Key | n/a
---- | --- | --- | ---
-FileName | varchar | NULL | 255
---- | --- | --- | ---
-Name | varchar | NULL | 100
---- | --- | --- | ---
-Type | varchar | NULL | 50
---- | --- | --- | ---
-Search | bit | NULL | n/a
---- | --- | --- | ---
-Library Filter | bit | NULL | n/a
---- | --- | --- | ---
-Visible | bit | NULL | n/a
---- | --- | --- | ---
-UploadedAt | datetime | getDate() | n/a
+| Name             | Type       | Constraints     | Length |
+|------------------|------------|------------------|--------|
+| Id               | int        | Primary Key      | n/a    |
+| FileName         | varchar    | NULL             | 255    |
+| Name             | varchar    | NULL             | 100    |
+| Type             | varchar    | NULL             | 50     |
+| Search           | bit        | NULL             | n/a    |
+| Library Filter    | bit        | NULL             | n/a    |
+| Visible          | bit        | NULL             | n/a    |
+| UploadedAt       | datetime   | DEFAULT getDate()| n/a    |
 
 ### CSV Upload process flow
 
